@@ -1,0 +1,17 @@
+/* 
+Name: VARIANCE
+Description: Variance
+Author: Carlos Barboza (inspired from a post on this formula by Mike Alexander aka DataPig)
+Category: Formula
+*/
+
+VARIANCE = LAMBDA(
+      ThisYear,
+      PriorYear,
+         IF( 
+             OR( NOT( ISNUMBER( ThisYear ) ), NOT( ISNUMBER( PriorYear ) ) ),
+             "",
+             ( ThisYear - PriorYear )
+             / ABS( ThisYear * ( PriorYear = 0 ) + PriorYear )
+            )
+        )
