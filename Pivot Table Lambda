@@ -1,0 +1,29 @@
+/* 
+Name: PIVOTTABLE
+Description: LAMBDA used to make a pivot table formula
+Author: Karina Adcock
+Category: Dynamic Arrays
+URL video: https://www.youtube.com/watch?v=VoB_cigX1hk
+*/
+
+PIVOTTABLE = LAMBDA(
+      data,
+      LET( one, TAKE( data, , 1 ),
+           two, INDEX( data, , 2 ),
+           three, DROP( data, , 2 ),
+           group1, SORT( UNIQUE( one ) ),
+           group2, TRANSPOSE( SORT( UNIQUE( two ) ) ),
+           VSTACK( 
+               HSTACK( "", group2, "Total" ),
+               HSTACK( group1, 
+                   SUMIFS( three, 
+                           one, group1, 
+                           two, group2 ), 
+                           SUMIFS( three, one, group1 ) ),
+               HSTACK( "Total", 
+                   SUMIFS( three, two, group2 ), 
+                           SUM( three ) 
+                          ) 
+                      ) 
+                 ) 
+           )
