@@ -1,0 +1,17 @@
+/* 
+Name: MEDIANIFλ
+Description: LAMBDA used to get MEDIANIF
+Author: Peter Bartholomew
+Category: Dynamic Arrays
+*/
+
+MEDIANIFλ = LAMBDA(
+              CriteriaRange,
+              CriteriaValues,
+              ValuesRange,
+              MAP( CriteriaValues,
+                   LAMBDA( CriteriaValue,
+                           MEDIAN( IF( CriteriaRange = CriteriaValue, ValuesRange ) )
+                          )
+                  )
+             )
