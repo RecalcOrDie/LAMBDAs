@@ -1,0 +1,20 @@
+/* 
+Name: MEDIANIF
+Description: LAMBDA used to find the median for the cells specified by a given condition or criteria
+Author: Mike Girvin from ExcelisFun
+Category: Dynamic Arrays
+*/
+
+MEDIANIF = LAMBDA(
+              CriteriaRange,
+              CriteriaValue,
+              ValuesRange,
+              BYROW( CriteriaValue,
+                  LAMBDA( CriteriaValue,
+                          MEDIAN( 
+                              FILTER( ValuesRange, 
+                                      CriteriaRange = CriteriaValue ) 
+                                 )
+                         )
+                    ) 
+                 )
